@@ -25,18 +25,18 @@ let percentualeMinorenni = prezzoBiglietto - (prezzoBiglietto * 20 / 100);
 let percentualeMaggiorenni = prezzoBiglietto - (prezzoBiglietto * 40 / 100);
 
 if (etaUtente < 18) {
-    console.log(percentualeMinorenni);
-} else if (etaUtente > 65) {
-    console.log(percentualeMaggiorenni);
-}
-/* else (etaUtente > 65) {
-    console.log(percentualeMaggiorenni) 
-}
- else (etaUtente > 18 && etaUtente < 65) {
-    console.log(prezzoBiglietto)
-} */ 
- 
+    /* console.log(percentualeMinorenni); */
+    document.getElementById('prezzoMinorenni').value = percentualeMinorenni;
+} else if  (etaUtente > 65) {
+    /* console.log(percentualeMaggiorenni); */
+    document.getElementById('prezzoMaggiorenni').value = percentualeMaggiorenni;
+} else {
+    document.getElementById('prezzoBiglietto').value = prezzoBiglietto;
+} 
+
 
 console.log(prezzoBiglietto); 
+
+/* document.getElementById('prezzoBiglietto').innerHTML = prezzoBiglietto; */ 
 
 
