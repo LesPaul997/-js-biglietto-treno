@@ -2,41 +2,34 @@
 
 /* console.log('sono collegato'); */
 
+// Elementi della pagina
+const discountElement = document.getElementById('discount');
+const priceElement = document.getElementById('prezzoBiglietto')
 
-let lunghezzaViaggio = prompt ('Quanti chilometri devi percorrere?');
-let etaUtente = prompt ('Quanti anni hai?');
+// Elementi della traccia
+const prezzoBigliettoPerKm = 0.21;
+const percentualeMinorenni = 20;
+const percentualeMaggiorenni = 40;
 
-let costoBiglietto = 0.21;
+// Elementi dati dall'utente
+const chilometri = prompt ('Quanti chilometri devi percorrere?');
+const etaUtente = prompt ('Quanti anni hai?');
 
+/* Elementi di base ( prezzo senza sconto, frase senza sconto) */
+let prezzoBiglietto = prezzoBigliettoPerKm * chilometri;
+let fraseSconto = 'A questo biglietto non verrà applicato alcuno sconto!';
 
-/* --il prezzo del biglietto è definito in base ai km (0.21 € al km) */
-
-let prezzoBiglietto = costoBiglietto * lunghezzaViaggio;
-
-/*  console.log(prezzoBiglietto);  */
-
-
-/* --va applicato uno sconto del 20% per i minorenni */
-
-let percentualeMinorenni = prezzoBiglietto - (prezzoBiglietto * 20 / 100);
-
-/* --va applicato uno sconto del 40% per gli over 65. */
-
-let percentualeMaggiorenni = prezzoBiglietto - (prezzoBiglietto * 40 / 100);
-
+// Eventuali sconti ( cambio il prezzo e la frase)
 if (etaUtente < 18) {
-    /* console.log(percentualeMinorenni); */
-    document.getElementById('prezzoMinorenni').value = percentualeMinorenni;
+   prezzoBiglietto  = prezzoBiglietto - (prezzoBiglietto * percentualeMinorenni / 100 )
+   fraseSconto = "Ti è stato applicato lo sconto minorenni"
 } else if  (etaUtente > 65) {
-    /* console.log(percentualeMaggiorenni); */
-    document.getElementById('prezzoMaggiorenni').value = percentualeMaggiorenni;
-} else {
-    document.getElementById('prezzoBiglietto').value = prezzoBiglietto;
+    prezzoBiglietto  = prezzoBiglietto - (prezzoBiglietto * percentualeMaggiorenni / 100 )
+   fraseSconto =  "Ti è stato applicato lo sconto over 65"
 } 
 
-
-console.log(prezzoBiglietto); 
-
-/* document.getElementById('prezzoBiglietto').innerHTML = prezzoBiglietto; */ 
+// Inserisco in pagina i testi corretti
+discountElement.innerText = fraseSconto;
+priceElement.value = prezzoBiglietto.toFixed(2);
 
 
